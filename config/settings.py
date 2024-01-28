@@ -10,7 +10,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-8b27c.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-8b27c.up.railway.app/register']
 
 # Application definition
 
