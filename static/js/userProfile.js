@@ -11,12 +11,10 @@ for (let i = 1; i < table.rows.length; i++) {
 
 let values = recorded_weight.flat();
 
-// Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily =
   'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-// Area Chart - Weight History
 const ctxAreaChart = document.getElementById('myChart');
 const myAreaChart = new Chart(ctxAreaChart, {
   type: 'line',
@@ -68,7 +66,6 @@ const myAreaChart = new Chart(ctxAreaChart, {
             max: 120,
             maxTicksLimit: 12,
             padding: 10,
-            // Include a 'kg' in the ticks
             callback: function (value, index, values) {
               return value + 'kg';
             },

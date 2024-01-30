@@ -15,12 +15,10 @@ carbohydrates = parseFloat(carbohydratesValue);
 let proteinValue = document.getElementById('protein_details').value;
 protein = parseFloat(proteinValue);
 
-// Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily =
   'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-// Horizontal Bar Chart - Macronutrients breakdown
 const ctxBarChart = document.getElementById('myBarChart');
 const myBarChart = new Chart(ctxBarChart, {
   type: 'horizontalBar',
