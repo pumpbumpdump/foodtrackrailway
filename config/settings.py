@@ -8,10 +8,10 @@ SECRET_KEY = config('SECRET_KEY', default='your_default_secret_key')
 
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['https://web-production-8b27c.up.railway.app/',
+ALLOWED_HOSTS = ['web-production-8b27c.up.railway.app',
                  'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-8b27c.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-8b27c.up.railway.app']
 
 # Application definition
 
