@@ -23,7 +23,7 @@ def register(request):
         username = request.POST['username']
         email = request.POST['email']
 
-        # Ensure password matches confirmation
+        #Untuk memastikan password cocok dengan konfirmasi
         password = request.POST['password']
         confirmation = request.POST['confirmation']
         if password != confirmation:
@@ -32,7 +32,7 @@ def register(request):
                 'categories': FoodCategory.objects.all()
             })
 
-        # Attempt to create new user
+        #Membuat user baru
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
@@ -52,12 +52,12 @@ def register(request):
 def login_view(request):
     if request.method == 'POST':
 
-        # Attempt to sign user in
+        #Sign in user
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
 
-        # Check if authentication successful
+        #Cek bahwa otentikasi berhasil atau tidak
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('index'))
@@ -87,7 +87,6 @@ def food_list_view(request):
     for food in foods:
         food.image = food.get_images.first()
 
-    # Show 4 food items per page
     page = request.GET.get('page', 1)
     paginator = Paginator(foods, 4)
     try:
@@ -174,21 +173,21 @@ def food_log_view(request):
     if request.method == 'POST':
         foods = Food.objects.all()
 
-        # get the food item selected by the user
+        #Get makanan yang diambil user
         food = request.POST['food_consumed']
         food_consumed = Food.objects.get(food_name=food)
 
-        # get the currently logged in user
+        #Get user yang login
         user = request.user
 
-        # add selected food to the food log
+        #Menambahkan makanan yang dipilih ke food log/diary
         food_log = FoodLog(user=user, food_consumed=food_consumed)
         food_log.save()
 
-    else:  # GET method
+    else: 
         foods = Food.objects.all()
 
-    # get the food log of the logged in user
+    #Get food log dari user yang telah login
     user_food_log = FoodLog.objects.filter(user=request.user)
 
     return render(request, 'food_log.html', {
@@ -203,7 +202,7 @@ def food_log_delete(request, food_id):
     '''
     It allows the user to delete food items from their food log
     '''
-    # get the food log of the logged in user
+    #Get food log dari user yang telah login
     food_consumed = FoodLog.objects.filter(id=food_id)
 
     if request.method == 'POST':
@@ -222,18 +221,18 @@ def weight_log_view(request):
     '''
     if request.method == 'POST':
 
-        # get the values from the form
+        #Get value dari form
         weight = request.POST['weight']
         entry_date = request.POST['date']
 
-        # get the currently logged in user
+        #Get user yang terlogin
         user = request.user
 
-        # add the data to the weight log
+        #Menambahkan data ke log berat badan
         weight_log = Weight(user=user, weight=weight, entry_date=entry_date)
         weight_log.save()
 
-    # get the weight log of the logged in user
+    #Get log berat badan dari user yang telah terlogin
     user_weight_log = Weight.objects.filter(user=request.user)
 
     return render(request, 'user_profile.html', {
@@ -247,7 +246,7 @@ def weight_log_delete(request, weight_id):
     '''
     It allows the user to delete a weight record from their weight log
     '''
-    # get the weight log of the logged in user
+    #Mengambil log berat badan dari user yang telah login
     weight_recorded = Weight.objects.filter(id=weight_id)
 
     if request.method == 'POST':
@@ -283,7 +282,6 @@ def category_details_view(request, category_name):
     for food in foods:
         food.image = food.get_images.first()
 
-    # Show 4 food items per page
     page = request.GET.get('page', 1)
     paginator = Paginator(foods, 4)
     try:
