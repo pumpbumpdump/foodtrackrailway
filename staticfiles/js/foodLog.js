@@ -33,12 +33,10 @@ fatPercentage = fatPercentage ? fatPercentage : 0;
 carbohydratesPercentage = carbohydratesPercentage ? carbohydratesPercentage : 0;
 proteinPercentage = proteinPercentage ? proteinPercentage : 0;
 
-// Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily =
   'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-// Doughnut Chart - Macronutrients breakdown
 const ctxDoughnutChart = document.getElementById('myPieChart');
 const myDoughnutChart = new Chart(ctxDoughnutChart, {
   type: 'doughnut',
@@ -86,10 +84,7 @@ const myDoughnutChart = new Chart(ctxDoughnutChart, {
   },
 });
 
-// Calorie Goal Progress Bar
-
 let caloriePercentage = (calories / 2000) * 100;
-//document.getElementById('progressBar').setAttribute('style', 'width:' + caloriePercentage + '%');
 
 $('.progress-bar').animate(
   {
