@@ -13,7 +13,7 @@ from .forms import FoodForm, ImageForm
 
 def index(request):
     '''
-    The default route which lists all food items
+    Route default yang menunjukkan daftar makanan
     '''
     return food_list_view(request)
 
@@ -79,8 +79,7 @@ def logout_view(request):
 
 def food_list_view(request):
     '''
-    It renders a page that displays all food items
-    Food items are paginated: 4 per page
+    Merender halaman yang menampilkan daftar makanan
     '''
     foods = Food.objects.all()
 
@@ -106,7 +105,7 @@ def food_list_view(request):
 
 def food_details_view(request, food_id):
     '''
-    It renders a page that displays the details of a selected food item
+    Merender detail tentang makanan yang telah dipilih
     '''
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
@@ -123,7 +122,7 @@ def food_details_view(request, food_id):
 @login_required
 def food_add_view(request):
     '''
-    It allows the user to add a new food item
+    Agar user dapat menambahkan item makanan
     '''
     ImageFormSet = forms.modelformset_factory(Image, form=ImageForm, extra=2)
 
@@ -167,8 +166,7 @@ def food_add_view(request):
 @login_required
 def food_log_view(request):
     '''
-    It allows the user to select food items and
-    add them to their food log
+    Untuk user memilih makanan dan menambahkannya ke food log
     '''
     if request.method == 'POST':
         foods = Food.objects.all()
@@ -200,7 +198,7 @@ def food_log_view(request):
 @login_required
 def food_log_delete(request, food_id):
     '''
-    It allows the user to delete food items from their food log
+    Untuk menghapus food item dari food log
     '''
     #Get food log dari user yang telah login
     food_consumed = FoodLog.objects.filter(id=food_id)
@@ -217,7 +215,7 @@ def food_log_delete(request, food_id):
 @login_required
 def weight_log_view(request):
     '''
-    It allows the user to record their weight
+    Untuk merekam berat user
     '''
     if request.method == 'POST':
 
@@ -244,7 +242,7 @@ def weight_log_view(request):
 @login_required
 def weight_log_delete(request, weight_id):
     '''
-    It allows the user to delete a weight record from their weight log
+    Menghapus rekaman berat user
     '''
     #Mengambil log berat badan dari user yang telah login
     weight_recorded = Weight.objects.filter(id=weight_id)
@@ -260,7 +258,7 @@ def weight_log_delete(request, weight_id):
 
 def categories_view(request):
     '''
-    It renders a list of all food categories
+    Merender kategori makanan
     '''
     return render(request, 'categories.html', {
         'categories': FoodCategory.objects.all()
@@ -269,9 +267,7 @@ def categories_view(request):
 
 def category_details_view(request, category_name):
     '''
-    Clicking on the name of any category takes the user to a page that
-    displays all of the foods in that category
-    Food items are paginated: 4 per page
+    Mengklik kategori akan membawa user kepada daftar makanan yang memiliki kategori yang sama
     '''
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
