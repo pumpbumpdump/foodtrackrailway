@@ -9,7 +9,8 @@ SECRET_KEY = config('SECRET_KEY', default='your_default_secret_key')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['web-production-8b27c.up.railway.app',
-                 'localhost']
+                 'localhost',
+                 '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://web-production-8b27c.up.railway.app']
 
